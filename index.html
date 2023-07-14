@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day3</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Amatic+SC&family=Andika&family=Bebas+Neue&family=Cinzel&family=Dancing+Script:wght@400;700&family=Montserrat:wght@500&family=Oswald:wght@500&family=Poppins:ital,wght@0,100;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Shadows+Into+Light&family=Signika+Negative:wght@500&display=swap');
+
+        :root {
+            --base: #800080;
+            --spacing: 10px;
+            --blur: 10px;
+        }
+        .hl{
+            color: var(--base)
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        img {
+            padding: var(--spacing);
+            background: var(--base);
+            filter: blur(var(--blur));
+        }
+
+        body {
+            text-align: center;
+        }
+
+        body {
+            background: #cb6cfa5a;
+            color: black;
+            font-family: "Poppins";
+            font-weight: 100;
+            font-size: 50px;
+        }
+
+        .controls {
+            margin-bottom: 50px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <h4>Update CSS Variable with <span class="hl">JS</span></h4>
+    <div class="controls">
+        <label for="spacing">Spacing</label>
+        <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px"
+            style="outline:none; cursor: pointer; accent-color: #ae2dc88e;">
+        <label for="blur">Blur</label>
+        <input type="range" name="blur" min="0" max="25" value="10" data-sizing="px"
+            style="outline:none; cursor: pointer; accent-color: #ae2dc88e;">
+        <label for="base">Base Color</label>
+        <input type="color" name="base" value="#ae2dc8" style="outline:none; cursor: pointer;">
+        <img src="https://images.pexels.com/photos/1559908/pexels-photo-1559908.jpeg?auto=compress&cs=tinysrgb&w=400"
+            alt="img">
+    </div>
+    <script>
+        const inputs = document.querySelectorAll(".controls input")
+        function handleUpdate(){
+            console.log(this.dataset);
+            //it is an object 
+            const suffix = this.dataset.sizing || "";
+            console.log(this.name);
+            document.documentElement.style.setProperty(`--${this.name}`,this.value+suffix);
+
+            //remember nodelist is different than an array
+            //but inputs  are actually nodelist fortunately it has forEach method therefore we are using it 
+        }
+        inputs.forEach(input => input.addEventListener("change",handleUpdate))
+        inputs.forEach(input => input.addEventListener("mousemove",handleUpdate))
+    </script>
+</body>
+
+</html>
